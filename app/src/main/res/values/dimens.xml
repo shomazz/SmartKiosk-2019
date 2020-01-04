@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="menu_horizontal_button_width">170dp</dimen>
+    <dimen name="menu_horizontal_button_height">90dp</dimen>
+    <dimen name="menu_button_margin">10dp</dimen>
+
+    <dimen name="auth_app_title">60sp</dimen>
+    <dimen name="auth_edit_text_width">260dp</dimen>
+    <dimen name="auth_edit_text_height">60dp</dimen>
+    <dimen name="auth_edit_text_padding">20dp</dimen>
+    <dimen name="auth_padding">10dp</dimen>
+
+</resources>

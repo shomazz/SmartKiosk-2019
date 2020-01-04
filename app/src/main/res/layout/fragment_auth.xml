@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBase"
+    tools:context=".AuthFragment">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/smart_kiosk"
+        android:textColor="#000"
+        android:textSize="@dimen/auth_app_title"
+        app:layout_constraintBottom_toTopOf="@+id/authGuideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/authGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.35" />
+
+    <EditText
+        android:id="@+id/loginEditText"
+        android:layout_width="@dimen/auth_edit_text_width"
+        android:layout_height="@dimen/auth_edit_text_height"
+        android:background="@color/colorPrimary"
+        android:hint="@string/login"
+        android:paddingStart="@dimen/auth_edit_text_padding"
+        android:paddingEnd="@dimen/auth_edit_text_padding"
+        android:textColorHint="#333"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/authGuideline"
+        tools:text="Shomazz" />
+
+    <EditText
+        android:id="@+id/passwordEditText"
+        android:layout_width="@dimen/auth_edit_text_width"
+        android:layout_height="@dimen/auth_edit_text_height"
+        android:layout_marginTop="@dimen/auth_padding"
+        android:background="@color/colorPrimary"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:paddingStart="@dimen/auth_edit_text_padding"
+        android:paddingEnd="@dimen/auth_edit_text_padding"
+        android:textColorHint="#333"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginEditText"
+        tools:text="1234Qwer" />
+
+    <Button
+        android:id="@+id/loginBtn"
+        android:layout_width="135dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="@dimen/auth_padding"
+        android:background="@color/colorPrimaryDark"
+        android:text="@string/login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwordEditText" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

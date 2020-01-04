@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">SmartKiosk</string>
+
+    <string name="input_code">Input Code</string>
+    <string name="change_lang">Change Language</string>
+
+    <string name="smart_kiosk">Smart Kiosk</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+
+</resources>

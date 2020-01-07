@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBase"
-    tools:context=".AuthFragment">
+    tools:context=".presentation.auth.AuthFragment">
 
     <TextView
         android:layout_width="wrap_content"
@@ -66,5 +66,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordEditText" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="@dimen/auth_padding"
+        android:indeterminateTint="@color/colorPrimaryDark"
+        android:indeterminateTintMode="src_in"
+        android:visibility="gone"
+        app:layout_constraintStart_toEndOf="@+id/loginBtn"
+        app:layout_constraintTop_toTopOf="@+id/loginBtn"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

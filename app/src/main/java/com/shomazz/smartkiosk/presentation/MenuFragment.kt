@@ -1,10 +1,11 @@
-package com.shomazz.smartkiosk
+package com.shomazz.smartkiosk.presentation
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.shomazz.smartkiosk.R
 
 class MenuFragment : Fragment() {
 

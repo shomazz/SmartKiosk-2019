@@ -1,6 +1,8 @@
 package com.shomazz.smartkiosk
 
-interface FragmentController {
+interface Navigator {
+
+    fun openAuthScreen()
 
     fun openMainMenu()
 

@@ -30,7 +30,7 @@ class AuthPresenter(
             view.hideProgress()
             view.onError(token)
             navigator.openMainMenu()
-            //TODO("success")
+            //TODO("cache token")
         }
 
         override fun onError(e: Throwable) {

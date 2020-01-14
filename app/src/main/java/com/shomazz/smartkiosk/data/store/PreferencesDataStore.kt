@@ -1,19 +1,15 @@
 package com.shomazz.smartkiosk.data.store
 
-import android.content.Context
 import android.content.SharedPreferences
 import io.reactivex.Completable
 import io.reactivex.Single
+import javax.inject.Inject
 
-class PreferencesDataStore(context: Context) {
-
-    private val APP_PREFS = "prefs"
-    private val TOKEN_KEY = "token"
+class PreferencesDataStore @Inject constructor(
     private val prefs: SharedPreferences
+) {
 
-    init {
-        prefs = context.getSharedPreferences(APP_PREFS, Context.MODE_PRIVATE)
-    }
+    private val TOKEN_KEY = "token"
 
     fun getToken(): Single<String?> {
         return Single.fromCallable {

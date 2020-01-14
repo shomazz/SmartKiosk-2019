@@ -7,10 +7,14 @@ import io.reactivex.disposables.Disposable
 abstract class BasePresenter<T : BaseView> {
 
     lateinit var navigator: Navigator
-    abstract var view: T
+    lateinit var view: T
 
     private val disposables = CompositeDisposable()
     private val disposableLock = Any()
+
+    fun attach(view: T) {
+        this.view = view
+    }
 
     fun clearDisposables() {
         synchronized(disposableLock) {

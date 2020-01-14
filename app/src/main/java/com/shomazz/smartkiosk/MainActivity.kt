@@ -5,8 +5,7 @@ import android.os.Bundle
 import com.shomazz.smartkiosk.presentation.auth.AuthFragment
 import com.shomazz.smartkiosk.presentation.MenuFragment
 
-class MainActivity : AppCompatActivity(),
-    Navigator {
+class MainActivity : AppCompatActivity(), Navigator {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

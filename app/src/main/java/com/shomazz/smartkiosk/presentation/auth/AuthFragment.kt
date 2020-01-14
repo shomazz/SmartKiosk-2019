@@ -6,17 +6,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.shomazz.smartkiosk.BaseApp
 import com.shomazz.smartkiosk.R
 import com.shomazz.smartkiosk.util.BaseFragment
 import kotlinx.android.synthetic.main.fragment_auth.*
+import javax.inject.Inject
 
 
 class AuthFragment : BaseFragment(), AuthView {
 
+    @Inject
     override lateinit var presenter: AuthPresenter
 
     override fun onAttach(context: Context) {
-        presenter = AuthPresenter(this)
+        (activity?.application as BaseApp).component
+            .inject(this)
+        presenter.attach(this)
         super.onAttach(context)
     }
 

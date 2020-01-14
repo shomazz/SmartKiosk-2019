@@ -1,8 +1,9 @@
 package com.shomazz.smartkiosk.data.store
 
 import io.reactivex.Single
+import javax.inject.Inject
 
-class ApiDataStore {
+class ApiDataStore @Inject constructor() {
 
     fun getAuthToken(login: String, password: String): Single<String> {
         return Single.fromCallable {

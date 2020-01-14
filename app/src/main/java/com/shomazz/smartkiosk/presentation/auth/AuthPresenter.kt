@@ -4,12 +4,11 @@ import com.shomazz.smartkiosk.util.BasePresenter
 import com.shomazz.smartkiosk.util.SimpleSingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
-class AuthPresenter(
-    override var view: AuthView
+class AuthPresenter @Inject constructor(
+    var authUseCases: AuthUseCases
 ) : BasePresenter<AuthView>() {
-
-    private val authUseCases: AuthUseCases = AuthUseCases()
 
     fun onLoginClick() {
         val login = view.getLogin()

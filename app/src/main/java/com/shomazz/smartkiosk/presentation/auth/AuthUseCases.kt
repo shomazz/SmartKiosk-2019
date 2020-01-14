@@ -2,10 +2,11 @@ package com.shomazz.smartkiosk.presentation.auth
 
 import com.shomazz.smartkiosk.domain.usecase.GetTokenUseCase
 import io.reactivex.Single
+import javax.inject.Inject
 
-class AuthUseCases {
-
-    private val getTokenUseCase = GetTokenUseCase()
+class AuthUseCases @Inject constructor(
+    private val getTokenUseCase: GetTokenUseCase
+) {
 
     fun getToken(
         login: String,

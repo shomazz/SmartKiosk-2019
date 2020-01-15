@@ -7,6 +7,6 @@ import retrofit2.http.Query
 interface ServerApi {
 
     @GET("/rest/v2/alpha")
-    fun getInfo(@Query("codes") code: String): Single<List<TokenDto>>
+    fun getAuthToken(@Query("codes") code: String): Single<List<TokenDto>>
 
 }

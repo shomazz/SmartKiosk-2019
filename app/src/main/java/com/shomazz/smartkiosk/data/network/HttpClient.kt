@@ -14,7 +14,7 @@ class HttpClient @Inject constructor(
     ): Single<List<TokenDto>> {
         return retrofit
             .create(ServerApi::class.java)
-            .getInfo(login)
+            .getAuthToken(login)
     }
 
 }

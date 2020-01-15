@@ -4,6 +4,7 @@ import com.shomazz.smartkiosk.BaseApp
 import com.shomazz.smartkiosk.presentation.auth.AuthFragment
 import dagger.Component
 
+@PerApplication
 @Component(modules = [ApplicationModule::class])
 interface ApplicationComponent {
 

@@ -22,12 +22,12 @@ class AuthPresenter @Inject constructor(
             .subscribe(AuthObserver())
     }
 
-    private inner class AuthObserver : SimpleSingleObserver<String>() {
+    private inner class AuthObserver : SimpleSingleObserver<List<String>>() {
 
-        override fun onSuccess(token: String) {
+        override fun onSuccess(token: List<String>) {
             super.onSuccess(token)
             view.hideProgress()
-            view.onError(token)
+            view.onError(token[0])
             navigator.openMainMenu()
             //TODO("cache token")
         }

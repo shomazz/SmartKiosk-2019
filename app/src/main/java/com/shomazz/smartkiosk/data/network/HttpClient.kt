@@ -17,4 +17,10 @@ class HttpClient @Inject constructor(
             .getAuthToken(login)
     }
 
+    fun getUserInfo(id: String): Single<List<UserDto>> {
+        return retrofit
+            .create(ServerApi::class.java)
+            .getUserInfo(id)
+    }
+
 }

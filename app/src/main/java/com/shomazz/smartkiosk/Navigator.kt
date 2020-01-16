@@ -4,6 +4,12 @@ interface Navigator {
 
     fun openAuthScreen()
 
-    fun openMainMenu()
+    fun openMenu()
+
+    fun openQrFragment()
+
+    fun openInputFragment()
+
+    fun returnToMenuWithResult(code: String)
 
 }

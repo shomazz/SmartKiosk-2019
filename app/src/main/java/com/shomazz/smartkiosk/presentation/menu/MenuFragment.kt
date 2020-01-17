@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.Toast
 import com.shomazz.smartkiosk.BaseApp
 import com.shomazz.smartkiosk.R
@@ -16,6 +17,7 @@ class MenuFragment : BaseFragment(), MenuView {
 
     @Inject
     override lateinit var presenter: MenuPresenter
+    private lateinit var toast: Toast
 
     override fun onAttach(context: Context) {
         (activity?.application as BaseApp).component
@@ -49,12 +51,27 @@ class MenuFragment : BaseFragment(), MenuView {
         presenter.onIdReceived(code)
     }
 
-    override fun showError(msg: String) {
-        Toast.makeText(context, msg, Toast.LENGTH_LONG).show()
+    override fun showError(message: String) {
+        if (::toast.isInitialized) {
+            toast.setText(message)
+            toast.show()
+        } else {
+            toast = Toast.makeText(context, message, Toast.LENGTH_LONG)
+            toast.show()
+        }
     }
 
     override fun showProgress(show: Boolean) {
-        //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        if (show) {
+            activity?.window?.setFlags(
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
+            )
+            menuProgressBar.visibility = View.VISIBLE
+        } else {
+            menuProgressBar.visibility = View.INVISIBLE
+            activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+        }
     }
 
     companion object {

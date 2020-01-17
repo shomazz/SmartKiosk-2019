@@ -13,6 +13,6 @@ interface MenuView : BaseView {
 
     fun onResult(code: String)
 
-    fun showError(msg: String)
+    fun showError(message: String)
 
 }

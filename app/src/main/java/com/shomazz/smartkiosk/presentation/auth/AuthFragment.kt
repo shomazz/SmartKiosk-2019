@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
 import android.widget.Toast
 import com.shomazz.smartkiosk.BaseApp
 import com.shomazz.smartkiosk.R
@@ -17,6 +18,7 @@ class AuthFragment : BaseFragment(), AuthView {
 
     @Inject
     override lateinit var presenter: AuthPresenter
+    private lateinit var toast: Toast
 
     override fun onAttach(context: Context) {
         (activity?.application as BaseApp).component
@@ -46,15 +48,22 @@ class AuthFragment : BaseFragment(), AuthView {
     }
 
     override fun onError(message: String) {
-        Toast.makeText(context, message, Toast.LENGTH_LONG).show()
-        //TODO: normal onError
+        if (::toast.isInitialized) {
+            toast.setText(message)
+            toast.show()
+        } else {
+            toast = Toast.makeText(context, message, Toast.LENGTH_LONG)
+            toast.show()
+        }
     }
 
     override fun showProgress(show: Boolean) {
-        with(progressBar) {
-            visibility =
-                if (show) View.VISIBLE
-                else View.GONE
+        if (show) {
+            activity?.window?.setFlags(FLAG_NOT_TOUCHABLE, FLAG_NOT_TOUCHABLE)
+            authProgressBar.visibility = View.VISIBLE
+        } else {
+            authProgressBar.visibility = View.INVISIBLE
+            activity?.window?.clearFlags(FLAG_NOT_TOUCHABLE)
         }
     }
 

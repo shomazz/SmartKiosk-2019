@@ -32,6 +32,7 @@ class ApplicationModule(private val baseApp: BaseApp) {
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
+        //TODO: add OkHttp to setTimeout
     }
 
     @Provides

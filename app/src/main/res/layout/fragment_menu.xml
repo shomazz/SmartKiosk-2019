@@ -40,6 +40,18 @@
         app:layout_constraintBottom_toBottomOf="@+id/menuQrBtn"
         app:layout_constraintStart_toStartOf="@+id/centerLine" />
 
+    <ProgressBar
+        android:id="@+id/menuProgressBar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="@dimen/menu_button_margin"
+        android:indeterminateTint="@color/colorPrimaryDark"
+        android:indeterminateTintMode="src_in"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/centerLine"
         android:layout_width="wrap_content"

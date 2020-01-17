@@ -9,9 +9,7 @@ interface MenuView : BaseView {
 
     fun onInputClick(v: View)
 
-    fun showProgress()
-
-    fun hideProgress()
+    fun showProgress(show: Boolean)
 
     fun onResult(code: String)
 

@@ -47,15 +47,15 @@ class AuthFragment : BaseFragment(), AuthView {
 
     override fun onError(message: String) {
         Toast.makeText(context, message, Toast.LENGTH_LONG).show()
-        //TODO("change")
+        //TODO: normal onError
     }
 
-    override fun hideProgress() {
-        progressBar.visibility = View.GONE
-    }
-
-    override fun showProgress() {
-        progressBar.visibility = View.VISIBLE
+    override fun showProgress(show: Boolean) {
+        with(progressBar) {
+            visibility =
+                if (show) View.VISIBLE
+                else View.GONE
+        }
     }
 
     companion object {

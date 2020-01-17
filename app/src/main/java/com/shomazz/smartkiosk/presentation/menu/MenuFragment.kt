@@ -53,11 +53,7 @@ class MenuFragment : BaseFragment(), MenuView {
         Toast.makeText(context, msg, Toast.LENGTH_LONG).show()
     }
 
-    override fun showProgress() {
-        //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun hideProgress() {
+    override fun showProgress(show: Boolean) {
         //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 

@@ -14,7 +14,7 @@ class AuthPresenter @Inject constructor(
         val login = view.getLogin()
         val password = view.getPassword()
 
-        view.showProgress()
+        view.showProgress(true)
         authUseCase.getToken(login, password)
             .doOnSubscribe(::addDisposable)
             .observeOn(AndroidSchedulers.mainThread())
@@ -25,7 +25,7 @@ class AuthPresenter @Inject constructor(
 
         override fun onSuccess(token: List<String>) {
             super.onSuccess(token)
-            view.hideProgress()
+            view.showProgress(false)
             view.onError(token[0])
             navigator.openMenu()
             //TODO("cache token")
@@ -33,9 +33,9 @@ class AuthPresenter @Inject constructor(
 
         override fun onError(e: Throwable) {
             super.onError(e)
-            view.hideProgress()
+            view.showProgress(false)
             view.onError(e.message ?: "Something goes wrong")
-            //TODO("not overrided")
+            //TODO: normal onError
         }
 
     }

@@ -13,7 +13,6 @@ interface AuthView: BaseView {
 
     fun onError(message: String)
 
-    fun showProgress()
+    fun showProgress(show: Boolean)
 
-    fun hideProgress()
 }

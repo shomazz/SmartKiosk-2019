@@ -20,7 +20,7 @@ class MenuPresenter @Inject constructor(
     }
 
     fun onIdReceived(id: String) {
-        view.showProgress()
+        view.showProgress(true)
         getUserUseCase.getUser(id)
             .doOnSubscribe(::addDisposable)
             .observeOn(AndroidSchedulers.mainThread())
@@ -31,14 +31,14 @@ class MenuPresenter @Inject constructor(
 
         override fun onSuccess(user: List<User>) {
             super.onSuccess(user)
-            view.hideProgress()
+            view.showProgress(false)
             view.showError(user[0].name)
-            //TODO: onSuccess
+            //TODO: print
         }
 
         override fun onError(e: Throwable) {
             super.onError(e)
-            view.hideProgress()
+            view.showProgress(false)
             view.showError(e.message ?: "Unknown Error")
             //TODO: normal onError
         }

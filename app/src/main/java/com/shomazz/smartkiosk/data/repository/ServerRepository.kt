@@ -17,7 +17,6 @@ class ServerRepository @Inject constructor(
         login: String,
         password: String
     ): Single<List<String>> {
-        //TODO: add cache
         return httpClient.getAuthToken(login, password)
             .subscribeOn(Schedulers.io())
             .map { it.map(TokenDto::token) }

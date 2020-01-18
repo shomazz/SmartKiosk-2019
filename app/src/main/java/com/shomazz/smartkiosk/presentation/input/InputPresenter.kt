@@ -7,7 +7,7 @@ class InputPresenter @Inject constructor(): BasePresenter<InputView>() {
 
     fun onInputButtonClick(){
         val id = view.getCode()
-        navigator.returnToMenuWithResult(id)
+        navigator.returnToMenuWithResult(id, true)
     }
 
 }

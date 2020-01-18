@@ -1,10 +1,14 @@
 package com.shomazz.smartkiosk
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.google.zxing.integration.android.IntentIntegrator
 import com.shomazz.smartkiosk.presentation.auth.AuthFragment
+import com.shomazz.smartkiosk.presentation.camera.InnerCameraActivity
 import com.shomazz.smartkiosk.presentation.input.InputFragment
 import com.shomazz.smartkiosk.presentation.menu.MenuFragment
+
 
 class MainActivity : AppCompatActivity(), Navigator {
 
@@ -36,14 +40,30 @@ class MainActivity : AppCompatActivity(), Navigator {
             .commit()
     }
 
-    override fun openQrFragment() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun openQrCamera() {
+        IntentIntegrator(this)
+            .setCameraId(1)
+            .setCaptureActivity(InnerCameraActivity::class.java)
+            .initiateScan()
     }
 
-    override fun returnToMenuWithResult(code: String) {
+    override fun returnToMenuWithResult(code: String?, popBackStack: Boolean) {
         with(supportFragmentManager) {
             (findFragmentByTag(MENU_TAG) as MenuFragment).onResult(code)
-            popBackStack()
+            if (popBackStack) popBackStack()
+        }
+    }
+
+    override fun onActivityResult(
+        requestCode: Int,
+        resultCode: Int,
+        data: Intent?
+    ) {
+        val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
+        if (result != null) {
+            returnToMenuWithResult(result.contents, false)
+        } else {
+            super.onActivityResult(requestCode, resultCode, data)
         }
     }
 

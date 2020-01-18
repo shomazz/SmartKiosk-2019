@@ -1,5 +1,6 @@
 package com.shomazz.smartkiosk.presentation.menu
 
+import com.shomazz.smartkiosk.R
 import com.shomazz.smartkiosk.domain.model.User
 import com.shomazz.smartkiosk.domain.usecase.GetUserUseCase
 import com.shomazz.smartkiosk.util.BasePresenter
@@ -12,19 +13,23 @@ class MenuPresenter @Inject constructor(
 ) : BasePresenter<MenuView>() {
 
     fun onQrClick() {
-        navigator.openQrFragment()
+        navigator.openQrCamera()
     }
 
     fun onInputClick() {
         navigator.openInputFragment()
     }
 
-    fun onIdReceived(id: String) {
-        view.showProgress(true)
-        getUserUseCase.getUser(id)
-            .doOnSubscribe(::addDisposable)
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(UserObserver())
+    fun onIdReceived(id: String?) {
+        if (id == null) {
+            view.showError(R.string.cancelled)
+        } else {
+            view.showProgress(true)
+            getUserUseCase.getUser(id)
+                .doOnSubscribe(::addDisposable)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(UserObserver())
+        }
     }
 
     private inner class UserObserver : SimpleSingleObserver<List<User>>() {

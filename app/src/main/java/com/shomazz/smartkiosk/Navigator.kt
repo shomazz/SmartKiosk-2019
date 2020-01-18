@@ -6,10 +6,10 @@ interface Navigator {
 
     fun openMenu()
 
-    fun openQrFragment()
+    fun openQrCamera()
 
     fun openInputFragment()
 
-    fun returnToMenuWithResult(code: String)
+    fun returnToMenuWithResult(code: String?, popBackStack: Boolean)
 
 }

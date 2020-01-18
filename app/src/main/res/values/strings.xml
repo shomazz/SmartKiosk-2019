@@ -10,4 +10,8 @@
 
     <string name="input_code">Input code</string>
 
+    <string name="show_qr_code">Place qr in center of screen</string>
+    <string name="back">Back</string>
+    <string name="cancelled">Cancelled</string>
+
 </resources>

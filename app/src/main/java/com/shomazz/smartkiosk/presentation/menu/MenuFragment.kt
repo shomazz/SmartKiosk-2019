@@ -47,7 +47,7 @@ class MenuFragment : BaseFragment(), MenuView {
         presenter.onInputClick()
     }
 
-    override fun onResult(code: String) {
+    override fun onResult(code: String?) {
         presenter.onIdReceived(code)
     }
 
@@ -59,6 +59,10 @@ class MenuFragment : BaseFragment(), MenuView {
             toast = Toast.makeText(context, message, Toast.LENGTH_LONG)
             toast.show()
         }
+    }
+
+    override fun showError(resId: Int) {
+        showError(getString(resId))
     }
 
     override fun showProgress(show: Boolean) {

@@ -32,12 +32,12 @@ class MenuPresenter @Inject constructor(
         }
     }
 
-    private inner class UserObserver : SimpleSingleObserver<List<User>>() {
+    private inner class UserObserver : SimpleSingleObserver<User>() {
 
-        override fun onSuccess(user: List<User>) {
+        override fun onSuccess(user: User) {
             super.onSuccess(user)
             view.showProgress(false)
-            view.showError(user[0].name)
+            view.showError(user.toString())
             //TODO: print
         }
 

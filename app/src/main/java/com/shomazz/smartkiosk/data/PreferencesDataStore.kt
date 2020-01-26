@@ -24,7 +24,7 @@ class PreferencesDataStore @Inject constructor(
     }
 
     companion object {
-        private const val TOKEN_KEY = "token"
+        const val TOKEN_KEY = "token"
     }
 
 }

@@ -3,9 +3,12 @@ package com.shomazz.smartkiosk.di
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
+import com.google.gson.GsonBuilder
 import com.shomazz.smartkiosk.BaseApp
+import com.shomazz.smartkiosk.domain.usecase.GetCachedTokenUseCase
 import dagger.Module
 import dagger.Provides
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -15,7 +18,7 @@ class ApplicationModule(private val baseApp: BaseApp) {
 
     companion object {
         private val APP_PREFS = "prefs"
-        private val BASE_URL = "https://restcountries.eu"
+        private val BASE_URL = "https://muroming.pythonanywhere.com"
     }
 
     @Provides
@@ -26,13 +29,26 @@ class ApplicationModule(private val baseApp: BaseApp) {
 
     @Provides
     @PerApplication
-    fun provideRetrofitInstance(): Retrofit {
+    fun provideRetrofitInstance(getCachedTokenUseCase: GetCachedTokenUseCase): Retrofit {
+        val gson = GsonBuilder()
+            .setLenient()
+            .create()
+
+        val client = OkHttpClient.Builder()
+            .addInterceptor { chain ->
+                val newRequest = chain.request().newBuilder()
+                    .addHeader("Authorization", getCachedTokenUseCase.getToken().blockingGet())
+                    .build()
+                chain.proceed(newRequest)
+            }.build()
+
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .client(client)
             .build()
-        //TODO: add OkHttp to setTimeout
+        //TODO: add setTimeout
     }
 
     @Provides

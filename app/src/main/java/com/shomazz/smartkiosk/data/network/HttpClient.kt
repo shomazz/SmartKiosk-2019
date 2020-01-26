@@ -11,13 +11,13 @@ class HttpClient @Inject constructor(
     fun getAuthToken(
         login: String,
         password: String
-    ): Single<List<TokenDto>> {
+    ): Single<TokenDto> {
         return retrofit
             .create(ServerApi::class.java)
             .getAuthToken(login)
     }
 
-    fun getUserInfo(id: String): Single<List<UserDto>> {
+    fun getUserInfo(id: String): Single<UserDto> {
         return retrofit
             .create(ServerApi::class.java)
             .getUserInfo(id)

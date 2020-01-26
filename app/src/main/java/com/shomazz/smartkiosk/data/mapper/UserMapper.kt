@@ -8,7 +8,9 @@ class UserMapper @Inject constructor() {
 
     fun map(userDto: UserDto): User {
         return User(
-            name = userDto.name
+            name = userDto.name,
+            organization = userDto.organization,
+            payload = userDto.payload
         )
     }
 

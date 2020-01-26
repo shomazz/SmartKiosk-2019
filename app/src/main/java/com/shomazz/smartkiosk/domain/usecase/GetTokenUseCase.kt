@@ -11,7 +11,7 @@ class GetTokenUseCase @Inject constructor(
     fun getToken(
         login: String,
         password: String
-    ): Single<List<String>> {
+    ): Single<String> {
         return serverRepository.getAuthToken(login, password)
     }
 

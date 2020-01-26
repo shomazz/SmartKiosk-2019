@@ -16,16 +16,16 @@ class ServerRepository @Inject constructor(
     fun getAuthToken(
         login: String,
         password: String
-    ): Single<List<String>> {
+    ): Single<String> {
         return httpClient.getAuthToken(login, password)
             .subscribeOn(Schedulers.io())
-            .map { it.map(TokenDto::token) }
+            .map(TokenDto::token)
     }
 
-    fun getUserInfo(id: String): Single<List<User>> {
+    fun getUserInfo(id: String): Single<User> {
         return httpClient.getUserInfo(id)
             .subscribeOn(Schedulers.io())
-            .map { it.map(userMapper::map) }
+            .map(userMapper::map)
     }
 
 }

@@ -9,7 +9,7 @@ class GetUserUseCase @Inject constructor(
     private val serverRepository: ServerRepository
 ) {
 
-    fun getUser(id: String): Single<List<User>> {
+    fun getUser(id: String): Single<User> {
         return serverRepository.getUserInfo(id)
     }
 

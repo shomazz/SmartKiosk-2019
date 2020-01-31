@@ -11,7 +11,7 @@ class PreferencesDataStore @Inject constructor(
 
     fun getToken(): Single<String?> {
         return Single.fromCallable {
-            prefs.getString(TOKEN_KEY, null)
+            prefs.getString(TOKEN_KEY, "")
         }
     }
 

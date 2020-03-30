@@ -1,20 +1,14 @@
-package com.shomazz.smartkiosk.util
+package com.shomazz.smartkiosk.mvp
 
-import com.shomazz.smartkiosk.Navigator
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
 abstract class BasePresenter<T : BaseView> {
 
-    lateinit var navigator: Navigator
     lateinit var view: T
 
     private val disposables = CompositeDisposable()
     private val disposableLock = Any()
-
-    fun attach(view: T) {
-        this.view = view
-    }
 
     fun clearDisposables() {
         synchronized(disposableLock) {
@@ -30,6 +24,10 @@ abstract class BasePresenter<T : BaseView> {
 
     fun onStop() {
         clearDisposables()
+    }
+
+    fun attach(view: T) {
+        this.view = view
     }
 
 }

@@ -2,7 +2,7 @@ package com.shomazz.smartkiosk.presentation.auth
 
 import com.shomazz.smartkiosk.domain.usecase.CacheTokenUseCase
 import com.shomazz.smartkiosk.domain.usecase.GetTokenUseCase
-import com.shomazz.smartkiosk.util.BasePresenter
+import com.shomazz.smartkiosk.mvp.BaseFragmentPresenter
 import com.shomazz.smartkiosk.util.SimpleSingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import javax.inject.Inject
@@ -10,11 +10,14 @@ import javax.inject.Inject
 class AuthPresenter @Inject constructor(
     val authUseCase: GetTokenUseCase,
     val cacheTokenUseCase: CacheTokenUseCase
-) : BasePresenter<AuthView>() {
+) : BaseFragmentPresenter<AuthView>() {
 
     fun onLoginClick() {
         val login = view.getLogin()
         val password = view.getPassword()
+
+        //Пример
+        //BaseApp.settingsInteractor.setLocale(Locale.ENGLISH).subscribe()
 
         view.showProgress(true)
         authUseCase.getToken(login, password)

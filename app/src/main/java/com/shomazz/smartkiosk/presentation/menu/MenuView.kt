@@ -2,7 +2,7 @@ package com.shomazz.smartkiosk.presentation.menu
 
 import android.view.View
 import androidx.annotation.StringRes
-import com.shomazz.smartkiosk.util.BaseView
+import com.shomazz.smartkiosk.mvp.BaseView
 
 interface MenuView : BaseView {
 

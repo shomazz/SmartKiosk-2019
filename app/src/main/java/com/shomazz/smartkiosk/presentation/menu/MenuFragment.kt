@@ -16,13 +16,13 @@ import javax.inject.Inject
 class MenuFragment : BaseFragment(), MenuView {
 
     @Inject
-    override lateinit var presenter: MenuPresenter
+    override lateinit var fragmentPresenter: MenuPresenter
     private lateinit var toast: Toast
 
     override fun onAttach(context: Context) {
         (activity?.application as BaseApp).component
             .inject(this)
-        presenter.attach(this)
+        fragmentPresenter.attach(this)
         super.onAttach(context)
     }
 
@@ -40,15 +40,15 @@ class MenuFragment : BaseFragment(), MenuView {
     }
 
     override fun onQrClick(v: View) {
-        presenter.onQrClick()
+        fragmentPresenter.onQrClick()
     }
 
     override fun onInputClick(v: View) {
-        presenter.onInputClick()
+        fragmentPresenter.onInputClick()
     }
 
     override fun onResult(code: String?) {
-        presenter.onIdReceived(code)
+        fragmentPresenter.onIdReceived(code)
     }
 
     override fun showError(message: String) {

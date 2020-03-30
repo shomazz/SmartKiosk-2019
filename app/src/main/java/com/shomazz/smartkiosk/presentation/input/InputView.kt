@@ -1,9 +1,9 @@
 package com.shomazz.smartkiosk.presentation.input
 
 import android.view.View
-import com.shomazz.smartkiosk.util.BaseView
+import com.shomazz.smartkiosk.mvp.BaseView
 
-interface InputView: BaseView{
+interface InputView: BaseView {
 
     fun getCode(): String
 

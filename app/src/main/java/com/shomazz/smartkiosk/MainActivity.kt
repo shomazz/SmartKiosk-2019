@@ -1,6 +1,8 @@
 package com.shomazz.smartkiosk
 
+import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.zxing.integration.android.IntentIntegrator
@@ -8,14 +10,35 @@ import com.shomazz.smartkiosk.presentation.auth.AuthFragment
 import com.shomazz.smartkiosk.presentation.camera.InnerCameraActivity
 import com.shomazz.smartkiosk.presentation.input.InputFragment
 import com.shomazz.smartkiosk.presentation.menu.MenuFragment
+import java.util.*
+import javax.inject.Inject
 
 
-class MainActivity : AppCompatActivity(), Navigator {
+class MainActivity : AppCompatActivity(), Navigator, AppView {
+
+    @Inject
+    lateinit var appPresenter: AppPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        (application as BaseApp).component.inject(this)
         setContentView(R.layout.activity_main)
+        setupPresenter()
         openAuthScreen()
+    }
+
+    private fun setupPresenter() {
+        appPresenter.attach(this)
+        appPresenter.subscribeToLanguageUpdates()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        appPresenter.onStop()
+    }
+
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(applySelectedAppLanguage(newBase))
     }
 
     override fun openAuthScreen() {
@@ -28,7 +51,10 @@ class MainActivity : AppCompatActivity(), Navigator {
     override fun openMenu() {
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.fragmentFrame, MenuFragment.newInstance(), MENU_TAG)
+            .replace(
+                R.id.fragmentFrame, MenuFragment.newInstance(),
+                MENU_TAG
+            )
             .commit()
     }
 
@@ -52,6 +78,18 @@ class MainActivity : AppCompatActivity(), Navigator {
             (findFragmentByTag(MENU_TAG) as MenuFragment).onResult(code)
             if (popBackStack) popBackStack()
         }
+    }
+
+    private fun applySelectedAppLanguage(context: Context): Context {
+        val locale = BaseApp.settingsInteractor.getUserSelectedLanguage().blockingGet()
+        val newConfig = Configuration(context.resources.configuration)
+        Locale.setDefault(locale)
+        newConfig.setLocale(locale)
+        return context.createConfigurationContext(newConfig)
+    }
+
+    override fun applyNewLanguage() {
+        recreate()
     }
 
     override fun onActivityResult(

@@ -9,7 +9,7 @@ class PreferencesDataStore @Inject constructor(
     private val prefs: SharedPreferences
 ) {
 
-    fun getToken(): Single<String?> {
+    fun getToken(): Single<String> {
         return Single.fromCallable {
             prefs.getString(TOKEN_KEY, "")
         }

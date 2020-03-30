@@ -3,14 +3,14 @@ package com.shomazz.smartkiosk.presentation.menu
 import com.shomazz.smartkiosk.R
 import com.shomazz.smartkiosk.domain.model.User
 import com.shomazz.smartkiosk.domain.usecase.GetUserUseCase
-import com.shomazz.smartkiosk.util.BasePresenter
+import com.shomazz.smartkiosk.mvp.BaseFragmentPresenter
 import com.shomazz.smartkiosk.util.SimpleSingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import javax.inject.Inject
 
 class MenuPresenter @Inject constructor(
     private val getUserUseCase: GetUserUseCase
-) : BasePresenter<MenuView>() {
+) : BaseFragmentPresenter<MenuView>() {
 
     fun onQrClick() {
         navigator.openQrCamera()

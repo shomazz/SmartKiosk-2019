@@ -15,12 +15,12 @@ import javax.inject.Inject
 class InputFragment : BaseFragment(), InputView {
 
     @Inject
-    override lateinit var presenter: InputPresenter
+    override lateinit var fragmentPresenter: InputPresenter
 
     override fun onAttach(context: Context) {
         (activity?.application as BaseApp).component
             .inject(this)
-        presenter.attach(this)
+        fragmentPresenter.attach(this)
         super.onAttach(context)
     }
 
@@ -39,7 +39,7 @@ class InputFragment : BaseFragment(), InputView {
     override fun getCode(): String = inputCodeEditText.text.toString()
 
     override fun onInputButtonClick(v: View) {
-        presenter.onInputButtonClick()
+        fragmentPresenter.onInputButtonClick()
     }
 
     companion object {

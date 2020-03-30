@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="to_input_code">Code eingeben</string>
+    <string name="input_code">Code eingeben</string>
+    <string name="change_lang">Sprache ändern</string>
+    <string name="smart_kiosk">Intelligenter Kiosk</string>
+    <string name="login">Anmeldung</string>
+    <string name="password">Passwort</string>
+    <string name="show_qr_code">Platz QR in der Mitte des Bildschirms</string>
+    <string name="back">Zurück</string>
+    <string name="cancelled">Annullieren</string>
+</resources>

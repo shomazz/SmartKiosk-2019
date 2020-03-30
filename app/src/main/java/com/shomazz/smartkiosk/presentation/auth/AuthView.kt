@@ -1,7 +1,7 @@
 package com.shomazz.smartkiosk.presentation.auth
 
 import android.view.View
-import com.shomazz.smartkiosk.util.BaseView
+import com.shomazz.smartkiosk.mvp.BaseView
 
 interface AuthView: BaseView {
 

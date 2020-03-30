@@ -17,13 +17,13 @@ import javax.inject.Inject
 class AuthFragment : BaseFragment(), AuthView {
 
     @Inject
-    override lateinit var presenter: AuthPresenter
+    override lateinit var fragmentPresenter: AuthPresenter
     private lateinit var toast: Toast
 
     override fun onAttach(context: Context) {
         (activity?.application as BaseApp).component
             .inject(this)
-        presenter.attach(this)
+        fragmentPresenter.attach(this)
         super.onAttach(context)
     }
 
@@ -44,7 +44,7 @@ class AuthFragment : BaseFragment(), AuthView {
     override fun getPassword() = passwordEditText.text.toString()
 
     override fun onLoginClick(button: View) {
-        presenter.onLoginClick()
+        fragmentPresenter.onLoginClick()
     }
 
     override fun onError(message: String) {

@@ -1,17 +1,12 @@
 <resources>
-    <string name="app_name">SmartKiosk</string>
-
-    <string name="to_input_code">Input Code</string>
-    <string name="change_lang">Change Language</string>
-
-    <string name="smart_kiosk">Smart Kiosk</string>
-    <string name="login">Login</string>
-    <string name="password">Password</string>
-
-    <string name="input_code">Input code</string>
-
-    <string name="show_qr_code">Place qr in center of screen</string>
-    <string name="back">Back</string>
-    <string name="cancelled">Cancelled</string>
-
+    <string name="app_name" translatable="false">SmartKiosk</string>
+    <string name="to_input_code">Ввести код</string>
+    <string name="change_lang">Изменить язык</string>
+    <string name="smart_kiosk">Умный Киоск</string>
+    <string name="login">Логин</string>
+    <string name="password">Пароль</string>
+    <string name="input_code">Введите код</string>
+    <string name="show_qr_code">Расположите QR-код в центре экрана</string>
+    <string name="back">Назад</string>
+    <string name="cancelled">Отменено</string>
 </resources>

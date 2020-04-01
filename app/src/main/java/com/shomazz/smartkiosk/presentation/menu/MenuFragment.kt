@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.Toast
-import com.shomazz.smartkiosk.BaseApp
 import com.shomazz.smartkiosk.R
 import com.shomazz.smartkiosk.util.BaseFragment
 import kotlinx.android.synthetic.main.fragment_menu.*
@@ -20,10 +19,8 @@ class MenuFragment : BaseFragment(), MenuView {
     private lateinit var toast: Toast
 
     override fun onAttach(context: Context) {
-        (activity?.application as BaseApp).component
-            .inject(this)
-        presenter.attach(this)
         super.onAttach(context)
+        presenter.attach(this)
     }
 
     override fun onCreateView(

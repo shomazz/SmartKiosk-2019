@@ -2,17 +2,28 @@ package com.shomazz.smartkiosk
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import com.google.zxing.integration.android.IntentIntegrator
 import com.shomazz.smartkiosk.presentation.auth.AuthFragment
 import com.shomazz.smartkiosk.presentation.camera.InnerCameraActivity
 import com.shomazz.smartkiosk.presentation.input.InputFragment
 import com.shomazz.smartkiosk.presentation.menu.MenuFragment
+import com.zeugmasolutions.localehelper.LocaleAwareCompatActivity
+import dagger.android.AndroidInjection
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasAndroidInjector
+import javax.inject.Inject
 
 
-class MainActivity : AppCompatActivity(), Navigator {
+class MainActivity : LocaleAwareCompatActivity(), Navigator, HasAndroidInjector {
+
+    @Inject
+    lateinit var fragmentInjector: DispatchingAndroidInjector<Any>
+
+    override fun androidInjector(): AndroidInjector<Any> = fragmentInjector
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         openAuthScreen()

@@ -1,30 +1,26 @@
 package com.shomazz.smartkiosk
 
-import android.app.Application
-import com.shomazz.smartkiosk.di.ApplicationComponent
-import com.shomazz.smartkiosk.di.ApplicationModule
 import com.shomazz.smartkiosk.di.DaggerApplicationComponent
+import com.zeugmasolutions.localehelper.LocaleAwareApplication
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasAndroidInjector
+import javax.inject.Inject
 
-class BaseApp : Application() {
+class BaseApp : LocaleAwareApplication(), HasAndroidInjector {
 
-    lateinit var component: ApplicationComponent
+    @Inject
+    lateinit var injector: DispatchingAndroidInjector<Any>
 
     override fun onCreate() {
         super.onCreate()
-        instance = this
-        setup()
+
+        DaggerApplicationComponent.factory()
+            .create(this)
+            .inject(this)
     }
 
-    fun setup() {
-        component = DaggerApplicationComponent
-            .builder()
-            .applicationModule(ApplicationModule(this))
-            .build()
-        component.inject(this)
+    override fun androidInjector(): AndroidInjector<Any> {
+        return injector
     }
-
-    companion object {
-        lateinit var instance: BaseApp private set
-    }
-
 }

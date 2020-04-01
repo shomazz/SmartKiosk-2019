@@ -18,10 +18,8 @@ class InputFragment : BaseFragment(), InputView {
     override lateinit var presenter: InputPresenter
 
     override fun onAttach(context: Context) {
-        (activity?.application as BaseApp).component
-            .inject(this)
-        presenter.attach(this)
         super.onAttach(context)
+        presenter.attach(this)
     }
 
     override fun onCreateView(

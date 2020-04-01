@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="to_input_code">Input Code</string>
+    <string name="input_code">Input code</string>
+    <string name="change_lang">Change language</string>
+    <string name="smart_kiosk">Smart Kiosk</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="show_qr_code">Place qr in center of screen</string>
+    <string name="back">Back</string>
+    <string name="cancelled">Cancelled</string>
+</resources>

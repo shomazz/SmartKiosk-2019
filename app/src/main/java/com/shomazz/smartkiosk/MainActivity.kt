@@ -1,6 +1,7 @@
 package com.shomazz.smartkiosk
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import com.google.zxing.integration.android.IntentIntegrator
 import com.shomazz.smartkiosk.presentation.auth.AuthFragment
@@ -21,6 +22,15 @@ class MainActivity : LocaleAwareCompatActivity(), Navigator, HasAndroidInjector 
     lateinit var fragmentInjector: DispatchingAndroidInjector<Any>
 
     override fun androidInjector(): AndroidInjector<Any> = fragmentInjector
+
+    override fun applyOverrideConfiguration(overrideConfiguration: Configuration?) {
+        if (overrideConfiguration != null) {
+            val uiMode = overrideConfiguration.uiMode
+            overrideConfiguration.setTo(baseContext.resources.configuration)
+            overrideConfiguration.uiMode = uiMode
+        }
+        super.applyOverrideConfiguration(overrideConfiguration)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)

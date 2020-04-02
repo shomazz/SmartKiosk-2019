@@ -1,5 +1,6 @@
 package com.shomazz.smartkiosk.presentation.menu
 
+import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import android.view.WindowManager
 import android.widget.Toast
 import com.shomazz.smartkiosk.R
 import com.shomazz.smartkiosk.util.BaseFragment
+import com.shomazz.smartkiosk.util.KioskLanguages
 import kotlinx.android.synthetic.main.fragment_menu.*
 import javax.inject.Inject
 
@@ -34,6 +36,23 @@ class MenuFragment : BaseFragment(), MenuView {
         super.onViewCreated(view, savedInstanceState)
         menuInputBtn.setOnClickListener(::onInputClick)
         menuQrBtn.setOnClickListener(::onQrClick)
+        menuChangeLangBtn.setOnClickListener(::onChangeLangClick)
+    }
+
+    override fun showLanguageDialog() {
+        val languages = KioskLanguages.languageTagMap.keys.toTypedArray()
+        if (context != null) {
+            AlertDialog.Builder(context)
+                .setItems(languages) { _, position ->
+                    presenter.onLanguageClick(KioskLanguages.languageTagMap[languages[position]])
+                }
+                .create()
+                .show()
+        }
+    }
+
+    override fun onChangeLangClick(v: View) {
+        presenter.onChangeLangClick()
     }
 
     override fun onQrClick(v: View) {

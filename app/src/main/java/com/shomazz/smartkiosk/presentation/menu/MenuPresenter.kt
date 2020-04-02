@@ -1,11 +1,13 @@
 package com.shomazz.smartkiosk.presentation.menu
 
 import com.shomazz.smartkiosk.R
+import com.shomazz.smartkiosk.SettingsHelper
 import com.shomazz.smartkiosk.domain.model.User
 import com.shomazz.smartkiosk.domain.usecase.GetUserUseCase
 import com.shomazz.smartkiosk.util.BasePresenter
 import com.shomazz.smartkiosk.util.SimpleSingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
+import java.util.*
 import javax.inject.Inject
 
 class MenuPresenter @Inject constructor(
@@ -18,6 +20,15 @@ class MenuPresenter @Inject constructor(
 
     fun onInputClick() {
         navigator.openInputFragment()
+    }
+
+    fun onChangeLangClick() {
+        view.showLanguageDialog()
+    }
+
+    fun onLanguageClick(tag: String?) {
+        (navigator as SettingsHelper)
+            .updateLocale(Locale.forLanguageTag(tag ?: "en"))
     }
 
     fun onIdReceived(id: String?) {

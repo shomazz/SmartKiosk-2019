@@ -16,7 +16,7 @@ import dagger.android.HasAndroidInjector
 import javax.inject.Inject
 
 
-class MainActivity : LocaleAwareCompatActivity(), Navigator, HasAndroidInjector {
+class MainActivity : LocaleAwareCompatActivity(), Navigator, HasAndroidInjector, SettingsHelper {
 
     @Inject
     lateinit var fragmentInjector: DispatchingAndroidInjector<Any>
@@ -36,7 +36,8 @@ class MainActivity : LocaleAwareCompatActivity(), Navigator, HasAndroidInjector 
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        openAuthScreen()
+        if (supportFragmentManager.backStackEntryCount == 0)
+            openAuthScreen()
     }
 
     override fun openAuthScreen() {
@@ -50,6 +51,7 @@ class MainActivity : LocaleAwareCompatActivity(), Navigator, HasAndroidInjector 
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.fragmentFrame, MenuFragment.newInstance(), MENU_TAG)
+            .addToBackStack(MENU_TAG)
             .commit()
     }
 

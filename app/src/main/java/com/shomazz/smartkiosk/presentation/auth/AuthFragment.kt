@@ -1,11 +1,14 @@
 package com.shomazz.smartkiosk.presentation.auth
 
+import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
+import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Toast
 import com.shomazz.smartkiosk.R
 import com.shomazz.smartkiosk.util.BaseFragment
@@ -44,12 +47,33 @@ class AuthFragment : BaseFragment(), AuthView {
         presenter.onLoginClick()
     }
 
-    override fun onError(message: String) {
+    override fun showMacAddressDialog() {
+        if (context != null) {
+            val dialog = AlertDialog.Builder(context)
+                .setView(R.layout.input_mac_addres_view)
+                .create()
+            with(dialog) {
+                show()
+                val button = findViewById<ImageButton>(R.id.inputMacAddressBtn)
+                val editText = findViewById<EditText>(R.id.inputMacAddressEditText)
+                button.setOnClickListener {
+                    presenter.onInputMacAddressClick(editText.text.toString())
+                    hide()
+                }
+            }
+        }
+    }
+
+    override fun onError(id: Int) {
+        onError(getString(id))
+    }
+
+    override fun onError(msg: String) {
         if (::toast.isInitialized) {
-            toast.setText(message)
+            toast.setText(msg)
             toast.show()
         } else {
-            toast = Toast.makeText(context, message, Toast.LENGTH_LONG)
+            toast = Toast.makeText(context, msg, Toast.LENGTH_LONG)
             toast.show()
         }
     }

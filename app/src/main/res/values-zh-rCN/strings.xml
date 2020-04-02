@@ -9,4 +9,6 @@
     <string name="show_qr_code">将QR放在屏幕中央</string>
     <string name="back">回</string>
     <string name="cancelled">已取消</string>
+    <string name="input_mac_address">输入打印机的mac地址</string>
+    <string name="something_goes_wrong">出了问题</string>
 </resources>

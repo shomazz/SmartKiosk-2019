@@ -23,8 +23,23 @@ class PreferencesDataStore @Inject constructor(
         }
     }
 
+    fun getMacAddress(): Single<String> {
+        return Single.fromCallable {
+            prefs.getString(MAC_ADDRESS, "")
+        }
+    }
+
+    fun cacheMacAddress(address: String): Completable {
+        return Completable.fromCallable {
+            prefs.edit()
+                .putString(MAC_ADDRESS, address)
+                .commit()
+        }
+    }
+
     companion object {
         const val TOKEN_KEY = "token"
+        const val MAC_ADDRESS = "mac_address"
     }
 
 }

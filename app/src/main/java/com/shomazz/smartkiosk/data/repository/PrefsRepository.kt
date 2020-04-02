@@ -17,4 +17,12 @@ class PrefsRepository @Inject constructor(
         return preferencesDataStore.cacheToken(token)
     }
 
+    fun getMacAddress(): Single<String> {
+        return preferencesDataStore.getMacAddress()
+    }
+
+    fun cacheMacAddress(address: String): Completable {
+        return preferencesDataStore.cacheMacAddress(address)
+    }
+
 }

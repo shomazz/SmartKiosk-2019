@@ -7,11 +7,14 @@
     <string name="smart_kiosk">Умный киоск</string>
     <string name="login">Логин</string>
     <string name="password">Пароль</string>
+    <string name="input_mac_address">Введите mac-адрес принтера</string>
 
     <string name="input_code">Введите код</string>
 
     <string name="show_qr_code">Расположите QR код в центре экрана</string>
     <string name="back">Назад</string>
     <string name="cancelled">Отмена</string>
+    <string name="something_goes_wrong">Что-то пошло не так</string>
+
 
 </resources>

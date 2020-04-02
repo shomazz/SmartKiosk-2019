@@ -8,7 +8,7 @@ class GetCachedTokenUseCase @Inject constructor(
     private val prefsRepository: PrefsRepository
 ) {
 
-    fun getToken(): Single<String?> {
+    fun getToken(): Single<String> {
         return prefsRepository.getToken()
     }
 

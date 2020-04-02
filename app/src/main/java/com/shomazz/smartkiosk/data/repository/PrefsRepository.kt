@@ -9,7 +9,7 @@ class PrefsRepository @Inject constructor(
     private val preferencesDataStore: PreferencesDataStore
 ) {
 
-    fun getToken(): Single<String?> {
+    fun getToken(): Single<String> {
         return preferencesDataStore.getToken()
     }
 

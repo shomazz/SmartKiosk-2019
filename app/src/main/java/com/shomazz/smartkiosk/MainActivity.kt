@@ -5,6 +5,7 @@ import android.content.res.Configuration
 import android.os.Bundle
 import com.google.zxing.integration.android.IntentIntegrator
 import com.shomazz.smartkiosk.presentation.auth.AuthFragment
+import com.shomazz.smartkiosk.presentation.camera.CustomIntentIntegrator
 import com.shomazz.smartkiosk.presentation.camera.InnerCameraActivity
 import com.shomazz.smartkiosk.presentation.input.InputFragment
 import com.shomazz.smartkiosk.presentation.menu.MenuFragment
@@ -13,6 +14,7 @@ import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
+import java.util.*
 import javax.inject.Inject
 
 
@@ -64,7 +66,8 @@ class MainActivity : LocaleAwareCompatActivity(), Navigator, HasAndroidInjector,
     }
 
     override fun openQrCamera() {
-        IntentIntegrator(this)
+        CustomIntentIntegrator(this)
+            .setLanguageTag(Locale.getDefault().toLanguageTag())
             .setCameraId(1)
             .setCaptureActivity(InnerCameraActivity::class.java)
             .initiateScan()

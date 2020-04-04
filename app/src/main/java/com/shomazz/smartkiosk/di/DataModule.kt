@@ -3,6 +3,7 @@ package com.shomazz.smartkiosk.di
 import android.content.Context
 import android.content.SharedPreferences
 import com.google.gson.GsonBuilder
+import com.shomazz.smartkiosk.data.network.ServerApi
 import com.shomazz.smartkiosk.domain.usecase.GetCachedTokenUseCase
 import dagger.Module
 import dagger.Provides
@@ -15,7 +16,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 class DataModule {
 
     private val APP_PREFS = "prefs"
-    private val BASE_URL = "https://muroming.pythonanywhere.com"
 
     @Provides
     fun provideSharedPrefs(context: Context): SharedPreferences {
@@ -37,7 +37,7 @@ class DataModule {
             }.build()
 
         return Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(ServerApi.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .client(client)

@@ -6,7 +6,7 @@ import com.shomazz.smartkiosk.util.BaseView
 
 interface AuthView: BaseView {
 
-    fun showMacAddressDialog()
+    fun showPrinterIpDialog()
 
     fun getLogin(): String
 

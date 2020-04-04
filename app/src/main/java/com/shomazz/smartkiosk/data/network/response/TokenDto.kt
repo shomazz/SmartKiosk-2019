@@ -1,7 +1,7 @@
-package com.shomazz.smartkiosk.data.network
+package com.shomazz.smartkiosk.data.network.response
 
 import com.google.gson.annotations.SerializedName
 
-class TokenDto(
+data class TokenDto(
     @SerializedName("token") val token: String
 )

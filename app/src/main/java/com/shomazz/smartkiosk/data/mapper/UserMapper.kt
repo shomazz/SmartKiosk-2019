@@ -1,6 +1,6 @@
 package com.shomazz.smartkiosk.data.mapper
 
-import com.shomazz.smartkiosk.data.network.UserDto
+import com.shomazz.smartkiosk.data.network.response.UserDto
 import com.shomazz.smartkiosk.domain.model.User
 import javax.inject.Inject
 

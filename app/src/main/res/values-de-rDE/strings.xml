@@ -9,6 +9,6 @@
     <string name="show_qr_code">Platz QR in der Mitte des Bildschirms</string>
     <string name="back">Zurück</string>
     <string name="cancelled">Annullieren</string>
-    <string name="input_mac_address">Geben Sie die Mac-Adresse des Druckers ein</string>
+    <string name="input_printer_ip">Geben Sie die IP des Druckers ein</string>
     <string name="something_goes_wrong">Etwas ist schief gelaufen</string>
 </resources>

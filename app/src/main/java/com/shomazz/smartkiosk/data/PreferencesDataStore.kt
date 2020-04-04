@@ -23,23 +23,23 @@ class PreferencesDataStore @Inject constructor(
         }
     }
 
-    fun getMacAddress(): Single<String> {
+    fun getPrinterIp(): Single<String> {
         return Single.fromCallable {
-            prefs.getString(MAC_ADDRESS, "")
+            prefs.getString(PRINTER_IP, "")
         }
     }
 
-    fun cacheMacAddress(address: String): Completable {
+    fun cachePrinterIp(ip: String): Completable {
         return Completable.fromCallable {
             prefs.edit()
-                .putString(MAC_ADDRESS, address)
+                .putString(PRINTER_IP, ip)
                 .commit()
         }
     }
 
     companion object {
         const val TOKEN_KEY = "token"
-        const val MAC_ADDRESS = "mac_address"
+        const val PRINTER_IP = "printer_ip"
     }
 
 }

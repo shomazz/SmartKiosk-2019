@@ -4,12 +4,12 @@ import com.shomazz.smartkiosk.data.repository.PrefsRepository
 import io.reactivex.Completable
 import javax.inject.Inject
 
-class CacheMacAddressUseCase @Inject constructor(
+class CachePrinterIpUseCase @Inject constructor(
     private val prefsRepository: PrefsRepository
 ) {
 
-    fun cacheMacAddress(address: String) : Completable{
-        return prefsRepository.cacheMacAddress(address)
+    fun cachePrinterIp(ip: String) : Completable{
+        return prefsRepository.cachePrinterIp(ip)
     }
 
 }

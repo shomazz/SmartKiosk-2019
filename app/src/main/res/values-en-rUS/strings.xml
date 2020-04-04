@@ -9,6 +9,6 @@
     <string name="show_qr_code">Place qr in center of screen</string>
     <string name="back">Back</string>
     <string name="cancelled">Cancelled</string>
-    <string name="input_mac_address">Enter the printer\'s mac address</string>
+    <string name="input_printer_ip">Enter the printer\'s IP address</string>
     <string name="something_goes_wrong">Something goes wrong</string>
 </resources>

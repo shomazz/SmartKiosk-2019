@@ -2,7 +2,7 @@ package com.shomazz.smartkiosk.presentation.auth
 
 import android.annotation.SuppressLint
 import com.shomazz.smartkiosk.R
-import com.shomazz.smartkiosk.domain.usecase.CacheMacAddressUseCase
+import com.shomazz.smartkiosk.domain.usecase.CachePrinterIpUseCase
 import com.shomazz.smartkiosk.domain.usecase.CacheTokenUseCase
 import com.shomazz.smartkiosk.domain.usecase.GetTokenUseCase
 import com.shomazz.smartkiosk.util.BasePresenter
@@ -13,7 +13,7 @@ import javax.inject.Inject
 class AuthPresenter @Inject constructor(
     private val authUseCase: GetTokenUseCase,
     private val cacheTokenUseCase: CacheTokenUseCase,
-    private val cacheMacAddressUseCase: CacheMacAddressUseCase
+    private val cachePrinterIpUseCase: CachePrinterIpUseCase
 ) : BasePresenter<AuthView>() {
 
     fun onLoginClick() {
@@ -28,8 +28,8 @@ class AuthPresenter @Inject constructor(
     }
 
     @SuppressLint("CheckResult")
-    fun onInputMacAddressClick(address: String) {
-        cacheMacAddressUseCase.cacheMacAddress(address)
+    fun onInputPrinterIpClick(ip: String) {
+        cachePrinterIpUseCase.cachePrinterIp(ip)
             .doOnSubscribe(::addDisposable)
             .subscribe(
                 { navigator.openMenu() },
@@ -42,7 +42,7 @@ class AuthPresenter @Inject constructor(
         override fun onSuccess(token: String) {
             super.onSuccess(token)
             view.showProgress(false)
-            view.showMacAddressDialog()
+            view.showPrinterIpDialog()
             cacheTokenUseCase.cacheToken(token).subscribe()
         }
 

@@ -4,12 +4,12 @@ import com.shomazz.smartkiosk.data.repository.PrefsRepository
 import io.reactivex.Single
 import javax.inject.Inject
 
-class GetCachedMacAddressUseCase @Inject constructor(
+class GetCachedPrinterIpUseCase @Inject constructor(
     private val prefsRepository: PrefsRepository
 ) {
 
-    fun getMacAddress(): Single<String> {
-        return prefsRepository.getMacAddress()
+    fun getPrinterIp(): Single<String> {
+        return prefsRepository.getPrinterIp()
     }
 
 }

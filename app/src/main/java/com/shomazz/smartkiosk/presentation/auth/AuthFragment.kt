@@ -47,17 +47,17 @@ class AuthFragment : BaseFragment(), AuthView {
         presenter.onLoginClick()
     }
 
-    override fun showMacAddressDialog() {
+    override fun showPrinterIpDialog() {
         if (context != null) {
             val dialog = AlertDialog.Builder(context)
-                .setView(R.layout.input_mac_addres_view)
+                .setView(R.layout.input_printer_ip_view)
                 .create()
             with(dialog) {
                 show()
-                val button = findViewById<ImageButton>(R.id.inputMacAddressBtn)
-                val editText = findViewById<EditText>(R.id.inputMacAddressEditText)
+                val button = findViewById<ImageButton>(R.id.inputPrinterIpBtn)
+                val editText = findViewById<EditText>(R.id.inputPrinterIpEditText)
                 button.setOnClickListener {
-                    presenter.onInputMacAddressClick(editText.text.toString())
+                    presenter.onInputPrinterIpClick(editText.text.toString())
                     hide()
                 }
             }

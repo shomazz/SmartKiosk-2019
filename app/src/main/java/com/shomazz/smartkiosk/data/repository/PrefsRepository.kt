@@ -17,12 +17,12 @@ class PrefsRepository @Inject constructor(
         return preferencesDataStore.cacheToken(token)
     }
 
-    fun getMacAddress(): Single<String> {
-        return preferencesDataStore.getMacAddress()
+    fun getPrinterIp(): Single<String> {
+        return preferencesDataStore.getPrinterIp()
     }
 
-    fun cacheMacAddress(address: String): Completable {
-        return preferencesDataStore.cacheMacAddress(address)
+    fun cachePrinterIp(ip: String): Completable {
+        return preferencesDataStore.cachePrinterIp(ip)
     }
 
 }

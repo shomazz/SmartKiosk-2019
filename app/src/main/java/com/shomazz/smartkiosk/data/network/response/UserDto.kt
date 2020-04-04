@@ -1,4 +1,4 @@
-package com.shomazz.smartkiosk.data.network
+package com.shomazz.smartkiosk.data.network.response
 
 import com.google.gson.annotations.SerializedName
 

@@ -57,8 +57,8 @@ class AuthFragment : BaseFragment(), AuthView {
                 val button = findViewById<ImageButton>(R.id.inputPrinterIpBtn)
                 val editText = findViewById<EditText>(R.id.inputPrinterIpEditText)
                 button.setOnClickListener {
+                    dismiss()
                     presenter.onInputPrinterIpClick(editText.text.toString())
-                    hide()
                 }
             }
         }

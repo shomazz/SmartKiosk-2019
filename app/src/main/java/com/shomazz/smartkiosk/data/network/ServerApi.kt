@@ -1,14 +1,14 @@
 package com.shomazz.smartkiosk.data.network
 
 import com.shomazz.smartkiosk.data.network.request.AuthTokenRequestDto
-import com.shomazz.smartkiosk.data.network.request.PrinterIpRequestDto
-import com.shomazz.smartkiosk.data.network.request.UserRequestDto
 import com.shomazz.smartkiosk.data.network.response.TokenDto
 import com.shomazz.smartkiosk.data.network.response.UserDto
 import io.reactivex.Completable
 import io.reactivex.Single
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Query
 
 interface ServerApi {
 
@@ -19,10 +19,11 @@ interface ServerApi {
     @POST("/user/authenticate")
     fun getAuthToken(@Body authTokenRequestDto: AuthTokenRequestDto): Single<TokenDto>
 
-    @POST("/user")
-    fun getUserInfo(@Body userRequestDto: UserRequestDto): Single<UserDto>
+    @GET("/user")
+    fun getUserInfo(@Query("qr_data") userId: String): Single<UserDto>
 
-    @POST("booth/set_print_ip")
-    fun setPrinterIp(@Body printerIpRequestDto: PrinterIpRequestDto): Completable
+    @POST("booths/set_print_ip")
+    fun setPrinterIp(@Query("ip") ip: String,
+                     @Query("boothId") kioskId: String): Completable
 
 }

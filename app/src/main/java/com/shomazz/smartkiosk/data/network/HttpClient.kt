@@ -1,8 +1,6 @@
 package com.shomazz.smartkiosk.data.network
 
 import com.shomazz.smartkiosk.data.network.request.AuthTokenRequestDto
-import com.shomazz.smartkiosk.data.network.request.PrinterIpRequestDto
-import com.shomazz.smartkiosk.data.network.request.UserRequestDto
 import com.shomazz.smartkiosk.data.network.response.TokenDto
 import com.shomazz.smartkiosk.data.network.response.UserDto
 import io.reactivex.Completable
@@ -26,13 +24,13 @@ class HttpClient @Inject constructor(
     fun getUserInfo(id: String): Single<UserDto> {
         return retrofit
             .create(ServerApi::class.java)
-            .getUserInfo(UserRequestDto(id))
+            .getUserInfo(id)
     }
 
     fun setPrinterIp(ip: String, kioskId: String): Completable {
         return retrofit
             .create(ServerApi::class.java)
-            .setPrinterIp(PrinterIpRequestDto(ip, kioskId))
+            .setPrinterIp(ip, kioskId)
     }
 
 }

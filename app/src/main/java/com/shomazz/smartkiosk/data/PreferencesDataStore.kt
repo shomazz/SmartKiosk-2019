@@ -9,7 +9,7 @@ class PreferencesDataStore @Inject constructor(
     private val prefs: SharedPreferences
 ) {
 
-    fun getToken(): Single<String?> {
+    fun getToken(): Single<String> {
         return Single.fromCallable {
             prefs.getString(TOKEN_KEY, "")
         }
@@ -23,8 +23,23 @@ class PreferencesDataStore @Inject constructor(
         }
     }
 
+    fun getPrinterIp(): Single<String> {
+        return Single.fromCallable {
+            prefs.getString(PRINTER_IP, "")
+        }
+    }
+
+    fun cachePrinterIp(ip: String): Completable {
+        return Completable.fromCallable {
+            prefs.edit()
+                .putString(PRINTER_IP, ip)
+                .commit()
+        }
+    }
+
     companion object {
         const val TOKEN_KEY = "token"
+        const val PRINTER_IP = "printer_ip"
     }
 
 }

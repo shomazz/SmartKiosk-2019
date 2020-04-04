@@ -1,15 +1,15 @@
 package com.shomazz.smartkiosk.domain.usecase
 
 import com.shomazz.smartkiosk.data.repository.PrefsRepository
-import io.reactivex.Single
+import io.reactivex.Completable
 import javax.inject.Inject
 
-class GetCachedTokenUseCase @Inject constructor(
+class CachePrinterIpUseCase @Inject constructor(
     private val prefsRepository: PrefsRepository
 ) {
 
-    fun getToken(): Single<String> {
-        return prefsRepository.getToken()
+    fun cachePrinterIp(ip: String) : Completable{
+        return prefsRepository.cachePrinterIp(ip)
     }
 
 }

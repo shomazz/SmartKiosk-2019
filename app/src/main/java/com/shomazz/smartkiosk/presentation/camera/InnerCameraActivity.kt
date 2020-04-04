@@ -1,23 +1,42 @@
 package com.shomazz.smartkiosk.presentation.camera
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.KeyEvent
-import androidx.appcompat.app.AppCompatActivity
 import com.journeyapps.barcodescanner.CaptureManager
 import com.shomazz.smartkiosk.R
+import com.zeugmasolutions.localehelper.LocaleAwareCompatActivity
 import kotlinx.android.synthetic.main.activity_inner_camera.*
+import java.util.*
 
 
-class InnerCameraActivity : AppCompatActivity() {
+class InnerCameraActivity : LocaleAwareCompatActivity() {
 
     private lateinit var capture: CaptureManager
 
+    override fun applyOverrideConfiguration(overrideConfiguration: Configuration?) {
+        if (overrideConfiguration != null) {
+            val uiMode = overrideConfiguration.uiMode
+            overrideConfiguration.setTo(baseContext.resources.configuration)
+            overrideConfiguration.uiMode = uiMode
+        }
+        super.applyOverrideConfiguration(overrideConfiguration)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        updateLocale()
         setContentView(R.layout.activity_inner_camera)
         setupCamera(savedInstanceState)
         innerCameraBackBtn.setOnClickListener { onBackPressed() }
+    }
+
+    private fun updateLocale() {
+        val tag = intent.getStringExtra(langExtraTag)
+        if (!tag.isNullOrBlank()) {
+            updateLocale(Locale.forLanguageTag(tag))
+        }
     }
 
     private fun setupCamera(savedInstanceState: Bundle?) {
@@ -58,4 +77,7 @@ class InnerCameraActivity : AppCompatActivity() {
         capture.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 
+    companion object {
+        val langExtraTag = "langTag"
+    }
 }

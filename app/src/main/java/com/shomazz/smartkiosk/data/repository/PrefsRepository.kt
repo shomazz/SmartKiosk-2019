@@ -9,12 +9,20 @@ class PrefsRepository @Inject constructor(
     private val preferencesDataStore: PreferencesDataStore
 ) {
 
-    fun getToken(): Single<String?> {
+    fun getToken(): Single<String> {
         return preferencesDataStore.getToken()
     }
 
     fun cacheToken(token: String): Completable {
         return preferencesDataStore.cacheToken(token)
+    }
+
+    fun getPrinterIp(): Single<String> {
+        return preferencesDataStore.getPrinterIp()
+    }
+
+    fun cachePrinterIp(ip: String): Completable {
+        return preferencesDataStore.cachePrinterIp(ip)
     }
 
 }

@@ -10,6 +10,10 @@ interface MenuView : BaseView {
 
     fun onInputClick(v: View)
 
+    fun onChangeLangClick(v: View)
+
+    fun showLanguageDialog()
+
     fun showProgress(show: Boolean)
 
     fun onResult(code: String?)

@@ -1,8 +1,12 @@
 package com.shomazz.smartkiosk
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.content.res.Configuration
 import android.os.Bundle
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.google.zxing.integration.android.IntentIntegrator
 import com.shomazz.smartkiosk.presentation.auth.AuthFragment
 import com.shomazz.smartkiosk.presentation.camera.CustomIntentIntegrator
@@ -38,6 +42,7 @@ class MainActivity : LocaleAwareCompatActivity(), Navigator, HasAndroidInjector,
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        requestPermissionIfNeed()
         if (supportFragmentManager.backStackEntryCount == 0)
             openAuthScreen()
     }
@@ -90,6 +95,16 @@ class MainActivity : LocaleAwareCompatActivity(), Navigator, HasAndroidInjector,
             returnToMenuWithResult(result.contents, false)
         } else {
             super.onActivityResult(requestCode, resultCode, data)
+        }
+    }
+
+    private fun requestPermissionIfNeed() {
+        val permission = Manifest.permission.WRITE_EXTERNAL_STORAGE
+        val permissionCode = ContextCompat.checkSelfPermission(this, permission)
+        if (permissionCode != PackageManager.PERMISSION_GRANTED &&
+            !ActivityCompat.shouldShowRequestPermissionRationale(this, permission)
+        ) {
+            ActivityCompat.requestPermissions(this, arrayOf(permission), 0)
         }
     }
 

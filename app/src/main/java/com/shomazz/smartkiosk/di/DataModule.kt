@@ -2,7 +2,9 @@ package com.shomazz.smartkiosk.di
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.content.res.Resources
 import com.google.gson.GsonBuilder
+import com.shomazz.smartkiosk.MainActivity
 import com.shomazz.smartkiosk.data.network.ServerApi
 import com.shomazz.smartkiosk.domain.usecase.GetCachedTokenUseCase
 import dagger.Module
@@ -20,6 +22,11 @@ class DataModule {
     @Provides
     fun provideSharedPrefs(context: Context): SharedPreferences {
         return context.getSharedPreferences(APP_PREFS, Context.MODE_PRIVATE)
+    }
+
+    @Provides
+    fun provideResources(mainActivity: MainActivity): Resources {
+        return mainActivity.resources
     }
 
     @Provides

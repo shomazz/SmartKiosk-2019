@@ -11,4 +11,7 @@
     <dimen name="auth_edit_text_padding">20dp</dimen>
     <dimen name="auth_padding">10dp</dimen>
 
+    <dimen name="badge_width">297dp</dimen>
+    <dimen name="badge_height">341dp</dimen>
+
 </resources>

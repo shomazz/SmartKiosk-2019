@@ -4,6 +4,7 @@ import com.shomazz.smartkiosk.R
 import com.shomazz.smartkiosk.SettingsHelper
 import com.shomazz.smartkiosk.domain.model.User
 import com.shomazz.smartkiosk.domain.usecase.GetUserUseCase
+import com.shomazz.smartkiosk.util.BadgeCreator
 import com.shomazz.smartkiosk.util.BasePresenter
 import com.shomazz.smartkiosk.util.SimpleSingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -11,7 +12,8 @@ import java.util.*
 import javax.inject.Inject
 
 class MenuPresenter @Inject constructor(
-    private val getUserUseCase: GetUserUseCase
+    private val getUserUseCase: GetUserUseCase,
+    private val badgeCreator: BadgeCreator
 ) : BasePresenter<MenuView>() {
 
     fun onQrClick() {
@@ -49,7 +51,7 @@ class MenuPresenter @Inject constructor(
             super.onSuccess(user)
             view.showProgress(false)
             view.showError(user.toString())
-            //TODO: print
+            badgeCreator.generateBadgePdf(user)
         }
 
         override fun onError(e: Throwable) {

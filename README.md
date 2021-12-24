@@ -9,3 +9,9 @@
 По этим данным приложение генерирует пдф файл беджика пользователя и отправляет его на локальный сервер, который взаимодействует с принтером.
 Принтер печатает полученный файл.
 Таким образом, для печати своего бейджика, нужно всего лишь отсканировать QR-код, который пришел на почту при регистрации на мероприятие.
+
+![image](https://user-images.githubusercontent.com/17685189/147372323-8cd86ba6-7ee0-41ba-8a9d-574307e4004d.png)
+![image](https://user-images.githubusercontent.com/17685189/147372335-724d71cc-b669-45e0-90f3-fe9ea1d7e37f.png)
+![image](https://user-images.githubusercontent.com/17685189/147372336-c8539ff9-144c-4be5-b371-6ab19226f32e.png)
+![image](https://user-images.githubusercontent.com/17685189/147372341-59ca5df8-33fc-407f-9055-b6d8dad25609.png)
+![image](https://user-images.githubusercontent.com/17685189/147372343-293cede5-e35e-44aa-a556-d191cd328ca8.png)
